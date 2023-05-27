@@ -11,4 +11,9 @@ public class Vertex <T> {
     public T getLabel() {
         return label;
     }
+
+    @Override
+    public String toString() {
+        return "[" + getLabel() + "]";
+    }
 }

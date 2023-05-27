@@ -1,15 +1,16 @@
 package com.learning.dfs;
 
-import com.learning.graph.GraphBuilder;
+import com.learning.graph.IGraph;
+import com.learning.graph.UndirectedGraphBuilder;
 import com.learning.graph.Vertex;
 
 import java.util.*;
 
 public class DepthFirstSearch {
 
-    public void dfs(GraphBuilder<String> graphBuilder, Vertex<String> start) {
+    public void dfs(IGraph<String> undirectedGraphBuilder, Vertex<String> start) {
 
-        var graph = graphBuilder.graph();
+        var graph = undirectedGraphBuilder.graph();
         Set<Vertex> visited = new HashSet<>();
 
         Stack<Vertex> stack = new Stack<>();
@@ -30,8 +31,8 @@ public class DepthFirstSearch {
         }
     }
 
-    public void dfsRecursively(GraphBuilder<String> graphBuilder, Vertex<String> start) {
-        dfsRecursively(graphBuilder.graph(), new HashSet<>(), start);
+    public void dfsRecursively(IGraph<String> undirectedGraphBuilder, Set<Vertex> visited, Vertex<String> start) {
+        dfsRecursively(undirectedGraphBuilder.graph(), visited, start);
     }
 
     public void dfsRecursively(Map<Vertex<String>, List<Vertex>> graph, Set<Vertex> visited, Vertex<String> start) {
@@ -46,7 +47,7 @@ public class DepthFirstSearch {
     }
 
     public static void main(String[] args) {
-        var graphBuilder = new GraphBuilder<String>();
+        var graphBuilder = new UndirectedGraphBuilder<String>();
 
         var av = graphBuilder.addVertex("A");
         var bv = graphBuilder.addVertex("B");
@@ -69,6 +70,6 @@ public class DepthFirstSearch {
         System.out.println("\n========================");
 
         System.out.println("DFS Recursively");
-        depthFirstSearch.dfsRecursively(graphBuilder, av);
+        depthFirstSearch.dfsRecursively(graphBuilder, new HashSet<>(),av);
     }
 }

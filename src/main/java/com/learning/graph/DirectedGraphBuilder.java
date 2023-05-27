@@ -1,11 +1,14 @@
 package com.learning.graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class GraphBuilder<T> {
+public class DirectedGraphBuilder<T> implements IGraph<T> {
     private Map<Vertex<T>, List<Vertex>> graph;
 
-    public GraphBuilder() {
+    public DirectedGraphBuilder() {
         graph = new HashMap<>();
     }
 
@@ -17,18 +20,14 @@ public class GraphBuilder<T> {
 
     public void addEdge(T label1, T label2) {
         graph.get(new Vertex(label1)).add(new Vertex(label2));
-        graph.get(new Vertex(label2)).add(new Vertex(label1));
     }
 
     public void addEdge(Vertex v1, Vertex v2) {
         graph.get(v1).add(v2);
-        graph.get(v2).add(v1);
     }
 
 
     public Map<Vertex<T>, List<Vertex>> graph() {
         return graph;
-    } 
+    }
 }
-
-

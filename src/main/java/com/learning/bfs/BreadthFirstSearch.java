@@ -1,6 +1,6 @@
 package com.learning.bfs;
 
-import com.learning.graph.GraphBuilder;
+import com.learning.graph.UndirectedGraphBuilder;
 import com.learning.graph.Vertex;
 
 import java.util.*;
@@ -11,8 +11,8 @@ import java.util.*;
  **/
 public class BreadthFirstSearch {
 
-    public void bfs(GraphBuilder graphBuilder, Vertex<String> start) {
-        var graph = graphBuilder.graph();
+    public void bfs(UndirectedGraphBuilder undirectedGraphBuilder, Vertex<String> start) {
+        var graph = undirectedGraphBuilder.graph();
         Queue<Vertex<String>> q = new ArrayDeque<>();
 
         q.add(start);
@@ -32,9 +32,9 @@ public class BreadthFirstSearch {
         }
     }
 
-    public void bfsRecursively(GraphBuilder graphBuilder, Vertex<String> start) {
+    public void bfsRecursively(UndirectedGraphBuilder undirectedGraphBuilder, Vertex<String> start) {
         Queue<Vertex<String>> qu = new LinkedList<>();
-        var graph = graphBuilder.graph();
+        var graph = undirectedGraphBuilder.graph();
 
         start.visited = true;
         qu.add(start);
@@ -62,7 +62,7 @@ public class BreadthFirstSearch {
     }
 
     public static void main(String[] args) {
-        var graphBuilder = new GraphBuilder();
+        var graphBuilder = new UndirectedGraphBuilder();
 
         Vertex av = getVertex(graphBuilder);
 
@@ -74,23 +74,23 @@ public class BreadthFirstSearch {
         System.out.println("\n========================");
 
         System.out.println("BFS Recursively");
-        graphBuilder = new GraphBuilder();
+        graphBuilder = new UndirectedGraphBuilder();
         av = getVertex(graphBuilder);
         breadthFirstSearch.bfsRecursively(graphBuilder, av);
     }
 
-    private static Vertex getVertex(GraphBuilder graphBuilder) {
-        var av = graphBuilder.addVertex("A");
-        var bv = graphBuilder.addVertex("B");
-        var cv = graphBuilder.addVertex("C");
-        var dv = graphBuilder.addVertex("D");
-        var ev = graphBuilder.addVertex("E");
+    private static Vertex getVertex(UndirectedGraphBuilder undirectedGraphBuilder) {
+        var av = undirectedGraphBuilder.addVertex("A");
+        var bv = undirectedGraphBuilder.addVertex("B");
+        var cv = undirectedGraphBuilder.addVertex("C");
+        var dv = undirectedGraphBuilder.addVertex("D");
+        var ev = undirectedGraphBuilder.addVertex("E");
 
-        graphBuilder.addEdge(av, dv);
-        graphBuilder.addEdge(av, cv);
-        graphBuilder.addEdge(bv, cv);
-        graphBuilder.addEdge(bv, ev);
-        graphBuilder.addEdge(dv, ev);
+        undirectedGraphBuilder.addEdge(av, dv);
+        undirectedGraphBuilder.addEdge(av, cv);
+        undirectedGraphBuilder.addEdge(bv, cv);
+        undirectedGraphBuilder.addEdge(bv, ev);
+        undirectedGraphBuilder.addEdge(dv, ev);
         return av;
     }
 
